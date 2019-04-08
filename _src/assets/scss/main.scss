@@ -1,6 +1,27 @@
-@import 'core/settings';
+//core
+@import "core/variables";
+//typography
+@import "components/typography";
+//header
+@import "layout/header";
+//main
+@import "layout/main";
+//cart
+@import "layout/cart";
 
+html {
+  background: $dusty-blue;
+  font-family: "Roboto", sans-serif;
+}
+html,
 body {
-	background: url('../images/logo-adalab-80px.png') center center no-repeat $color-white;
-	height: 100vh;
+  margin: 0;
+  height: 100%;
+  //overflow: hidden;
+}
+* {
+  box-sizing: border-box;
+}
+.hidden {
+  display: none;
 }
