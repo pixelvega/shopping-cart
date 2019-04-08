@@ -5,13 +5,13 @@
   left: 0;
   right: 0;
   height: 100vh;
-  padding: 0px 15px 30px 15px;
+  padding-bottom: 30px;
   background: $white;
   z-index: 5;
 }
 .cart__title {
   margin: 70px 0 0;
-  padding-top: 20px;
+  padding: 20px 0px 0px 15px;
 }
 .cart__articles-delivery {
   padding-top: 17px;
@@ -22,6 +22,7 @@
 .cart__form {
   height: calc(100% - 130px);
   overflow: auto;
+  padding: 0 15px;
 }
 .cart__list {
   padding: 0;
