@@ -1,62 +1,6 @@
 "use strict";
-const ENDPOINT =
-  "https://raw.githubusercontent.com/pixelvega/shopping-cart/scripts/_src/assets/data/cart.json?token=ApiB9u_KYumImzYD_NXri1oPXGYJRl8Tks5cq36gwA%3D%3D";
-let data = [
-  {
-    id: "0",
-    name: "Vans - zapatillas classic slip on",
-    size: "36",
-    price: 36.5,
-    image: "assets/images/image-01_2019-04-06/image-01@2x.jpg",
-    date: "Mon Apr 08 2019 18:43:45 GMT+0200 (Central European Summer Time)",
-    units: 1
-  },
-  {
-    id: "1",
-    name: "Vans - zapatillas classic slip on",
-    size: "35",
-    price: 35.5,
-    image: "assets/images/image-02/image-01@2x.jpg",
-    date: "Mon Apr 08 2019 18:43:45 GMT+0200 (Central European Summer Time)",
-    units: 1
-  },
-  {
-    id: "2",
-    name: "Vans - zapatillas classic slip on",
-    size: "36",
-    price: 36.6,
-    image: "assets/images/image-03/image-01@2x.jpg",
-    date: "Mon Apr 08 2019 18:43:45 GMT+0200 (Central European Summer Time)",
-    units: 1
-  },
-  {
-    id: "3",
-    name: "Nike - classic urban",
-    size: "42",
-    price: 42.2,
-    image: "assets/images/image-01_2019-04-06/image-01@2x.jpg",
-    date: "Mon Apr 08 2020 18:43:45 GMT+0200 (Central European Summer Time)",
-    units: 1
-  },
-  {
-    id: "4",
-    name: "New Balance - zapatillas",
-    size: "39",
-    price: 39.9,
-    image: "assets/images/image-01_2019-04-06/image-01@2x.jpg",
-    date: "Mon Apr 08 2020 18:43:45 GMT+0200 (Central European Summer Time)",
-    units: 1
-  },
-  {
-    id: "5",
-    name: "Adidas",
-    size: "27",
-    price: 27.5,
-    image: "assets/images/image-01_2019-04-06/image-01@2x.jpg",
-    date: "Mon Apr 08 2020 18:43:45 GMT+0200 (Central European Summer Time)",
-    units: 1
-  }
-];
+const ENDPOINT = "assets/data/cart.json";
+let data = [];
 let productsByDates = [];
 
 const cartArticlesEl = document.querySelector(".cart__articles");
@@ -64,14 +8,12 @@ const cartTotal = document.querySelector(".cart__total-sum-number");
 const cartTotalArticles = document.querySelector(".cart__title-num");
 
 const getResults = () => {
-  // fetch(ENDPOINT)
-  //   .then(resp => resp.json())
-  //   .then(data => {
-  //     showResults(data);
-  //   });
-  setTimeout(() => {
-    orderData(data);
-  }, 0);
+  fetch(ENDPOINT)
+    .then(resp => resp.json())
+    .then(results => {
+      data = results;
+      orderData(data);
+    });
 };
 
 const getTotalAmount = data => {
@@ -79,6 +21,7 @@ const getTotalAmount = data => {
   for (const item of data) {
     total += item.price * item.units;
   }
+
   cartTotal.innerHTML = total.toFixed(2);
 };
 const getTotalArticles = data => {
@@ -86,6 +29,7 @@ const getTotalArticles = data => {
   for (const item of data) {
     totalArticles += item.units;
   }
+
   cartTotalArticles.innerHTML = totalArticles;
 };
 
@@ -179,8 +123,10 @@ const showResults = productsByDates => {
         listItems = "";
       }
     }
+
     cartArticlesEl.innerHTML = cartList;
   }
+
   addListeners();
 };
 
@@ -188,6 +134,7 @@ const addListeners = () => {
   const btnsPlus = document.querySelectorAll(".btn-plus");
   const btnsMinus = document.querySelectorAll(".btn-minus");
   const btnsRemove = document.querySelectorAll(".cart__item-btn-remove");
+
   for (const btn of btnsMinus) {
     btn.addEventListener("click", handleMinus);
   }
@@ -198,6 +145,7 @@ const addListeners = () => {
     btn.addEventListener("click", handleRemoveItem);
   }
 };
+
 const handleMinus = e => {
   const itemId = e.currentTarget.getAttribute("data-id");
   const itemPrice = e.currentTarget.getAttribute("data-price");
@@ -207,9 +155,11 @@ const handleMinus = e => {
     orderData(data);
   }
 };
+
 const handlePlus = e => {
   const itemId = e.currentTarget.getAttribute("data-id");
   const itemPrice = e.currentTarget.getAttribute("data-price");
+
   ++data[itemId].units;
 
   orderData(data);
@@ -217,6 +167,14 @@ const handlePlus = e => {
 
 const handleRemoveItem = e => {
   const itemId = e.currentTarget.getAttribute("data-id");
+  const itemEl = document.getElementById(`${itemId}`);
+  const parentEl = itemEl.parentNode;
+  parentEl.removeChild(itemEl);
+
+  if (parentEl.children.length <= 1) {
+    console.log("ya no le quedan hijos");
+    parentEl.parentNode.removeChild(parentEl);
+  }
 
   for (let i = 0; i < data.length; i++) {
     if (data[i].id.indexOf(itemId) !== -1) {
@@ -224,7 +182,10 @@ const handleRemoveItem = e => {
     }
   }
 
-  orderData(data);
+  getTotalAmount(data);
+  getTotalArticles(data);
+
+  // console.log(e.currentTarget.parentNode.parentNode);
 };
 
 getResults();
