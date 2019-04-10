@@ -2,6 +2,8 @@
 @import "core/variables";
 //typography
 @import "components/typography";
+//buttons
+@import "components/buttons";
 //header
 @import "layout/header";
 //main
@@ -14,11 +16,7 @@ body {
   font-family: "Roboto", sans-serif;
   margin: 0;
   height: 100%;
-  //overflow: hidden;
 }
 * {
   box-sizing: border-box;
-}
-.hidden {
-  display: none;
 }
