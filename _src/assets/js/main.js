@@ -73,7 +73,7 @@ const showResults = productsByDates => {
               productsByDates[i][j].size
             }</span></p>
             <p class="cart__item-price">
-              <span class="cart__item-price-text hidden">Price:</span>
+              <span class="cart__item-price-text">Price:</span>
               <span class="cart__item-price-number">${
                 productsByDates[i][j].price
               }</span>€
