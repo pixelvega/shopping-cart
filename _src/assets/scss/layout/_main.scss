@@ -20,8 +20,18 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background: $pure-black;
   opacity: 0.29;
+  background: $pure-black;
+  animation-name: opacityInOut;
+  animation-duration: 1s;
+}
+@keyframes opacityInOut {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.29;
+  }
 }
 .page__main-overflow {
   overflow: hidden;

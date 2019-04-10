@@ -1,22 +1,21 @@
 //cart
 .page__cart {
   position: fixed;
+  width: 100vw;
   height: 100vh;
   top: 0;
-  left: 0;
   right: -100vw;
-  opacity: 0;
   background: $white;
-  z-index: 5;
   transition: all 0.5s;
   @media all and (min-width: 768px) {
     width: 448px;
-    left: auto;
   }
 }
 .slide-cart {
   right: 0;
-  opacity: 1;
+  @media all and (min-width: 768px) {
+    right: 0;
+  }
 }
 .cart__title {
   margin: 70px 0 0;
