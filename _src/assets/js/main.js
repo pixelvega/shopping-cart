@@ -24,10 +24,17 @@ const getResults = () => {
 
 const getTotalAmount = data => {
   let total = 0;
-  let discount = 10;
+  let discount = 0;
+
   for (const item of data) {
     total += item.price * item.units;
   }
+  if (total === 0) {
+    discount = 0;
+  } else {
+    discount = 10;
+  }
+
   cartSubtotal.innerHTML = total.toFixed(2);
   cartTotal.innerHTML = (total - discount).toFixed(2);
 };
