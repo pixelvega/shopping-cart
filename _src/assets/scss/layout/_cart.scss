@@ -1,11 +1,10 @@
 //cart
 .page__cart {
   position: fixed;
+  height: 100vh;
   top: 0;
   left: 0;
   right: 0;
-  height: 100vh;
-  padding-bottom: 30px;
   background: $white;
   z-index: 5;
 }
@@ -20,7 +19,7 @@
   margin: 0;
 }
 .cart__form {
-  height: calc(100% - 130px);
+  height: calc(100% - 109px);
   overflow: auto;
   padding: 0 15px;
 }
@@ -47,13 +46,14 @@
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 85px 1fr;
 }
-.cart__total-btn {
+.cart__submit-btn {
   width: 100%;
   padding: 17px 15px;
+  margin-bottom: 15px;
   background: $dark;
   color: $white;
 }
-.cart__total-btn-title {
+.cart__submit-btn-title {
   margin: 0;
   font-weight: 700;
   text-transform: uppercase;
