@@ -9,12 +9,9 @@
 //cart
 @import "layout/cart";
 
-html {
-  background: $dusty-blue;
-  font-family: "Roboto", sans-serif;
-}
 html,
 body {
+  font-family: "Roboto", sans-serif;
   margin: 0;
   height: 100%;
   //overflow: hidden;

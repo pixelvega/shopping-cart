@@ -1,1 +1,25 @@
 //main
+.page__main {
+  height: 100vh;
+  padding-top: 70px;
+  @media all and (min-width: 768px) {
+    padding-top: 77px;
+  }
+}
+.main__container {
+  position: relative;
+  width: 100vw;
+}
+.main__img {
+  width: 100%;
+}
+.main__overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: $pure-black;
+  opacity: 0.29;
+}

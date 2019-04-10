@@ -93,7 +93,7 @@ const showResults = productsByDates => {
             }" data-price="${productsByDates[i][j].price}" data-units="${
         productsByDates[i][j].units
       }">
-              <i class="fas fa-plus"></i>
+              <i class="fas fa-plus cart__quantity-icon"></i>
             </button>
             <div class="cart__item-quantity">
               <span class="cart__item-quantity-number">${
@@ -105,7 +105,7 @@ const showResults = productsByDates => {
             }" data-price="${productsByDates[i][j].price}" data-units="${
         productsByDates[i][j].units
       }">
-              <i class="fas fa-minus"></i>
+              <i class="fas fa-minus cart__quantity-icon"></i>
             </button>
           </div>
           <button class="btn cart__item-btn-remove" data-id="${
