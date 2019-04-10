@@ -5,7 +5,7 @@
     "size": "36",
     "price": 36.5,
     "image": "assets/images/image-01_2019-04-06/image-01@2x.jpg",
-    "date": "Mon Apr 08 2019 18:43:45 GMT+0200 (Central European Summer Time)",
+    "date": "15 de Abril",
     "units": 1
   },
   {
@@ -14,7 +14,7 @@
     "size": "35",
     "price": 35.5,
     "image": "assets/images/image-02/image-01@2x.jpg",
-    "date": "Mon Apr 08 2019 18:43:45 GMT+0200 (Central European Summer Time)",
+    "date": "15 de Abril",
     "units": 1
   },
   {
@@ -23,7 +23,7 @@
     "size": "36",
     "price": 36.6,
     "image": "assets/images/image-03/image-01@2x.jpg",
-    "date": "Mon Apr 08 2019 18:43:45 GMT+0200 (Central European Summer Time)",
+    "date": "15 de Abril",
     "units": 1
   },
   {
@@ -32,7 +32,7 @@
     "size": "42",
     "price": 42.2,
     "image": "assets/images/image-01_2019-04-06/image-01@2x.jpg",
-    "date": "Mon Apr 08 2020 18:43:45 GMT+0200 (Central European Summer Time)",
+    "date": "16 de Abril",
     "units": 1
   },
   {
@@ -40,8 +40,8 @@
     "name": "New Balance - zapatillas",
     "size": "39",
     "price": 39.9,
-    "image": "assets/images/image-01_2019-04-06/image-01@2x.jpg",
-    "date": "Mon Apr 08 2020 18:43:45 GMT+0200 (Central European Summer Time)",
+    "image": "assets/images/image-02/image-01@2x.jpg",
+    "date": "16 de Abril",
     "units": 1
   },
   {
@@ -50,7 +50,7 @@
     "size": "27",
     "price": 27.5,
     "image": "assets/images/image-01_2019-04-06/image-01@2x.jpg",
-    "date": "Mon Apr 08 2020 18:43:45 GMT+0200 (Central European Summer Time)",
+    "date": "16 de Abril",
     "units": 1
   }
 ]

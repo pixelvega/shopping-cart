@@ -4,6 +4,7 @@ let data = [];
 let productsByDates = [];
 
 const cartArticlesEl = document.querySelector(".cart__articles");
+const cartSubtotal = document.querySelector(".cart__subtotal-sum");
 const cartTotal = document.querySelector(".cart__total-sum-number");
 const cartTotalArticles = document.querySelector(".cart__title-num");
 
@@ -17,17 +18,18 @@ const getResults = () => {
     .then(resp => resp.json())
     .then(results => {
       data = results;
-      orderData(data);
+      groupDataByDates(data);
     });
 };
 
 const getTotalAmount = data => {
   let total = 0;
+  let discount = 10;
   for (const item of data) {
     total += item.price * item.units;
   }
-
-  cartTotal.innerHTML = total.toFixed(2);
+  cartSubtotal.innerHTML = total.toFixed(2);
+  cartTotal.innerHTML = total.toFixed(2) - discount;
 };
 const getTotalArticles = data => {
   let totalArticles = 0;
@@ -38,7 +40,7 @@ const getTotalArticles = data => {
   cartTotalArticles.innerHTML = totalArticles;
 };
 
-const orderData = data => {
+const groupDataByDates = data => {
   let deliveryDates = [];
   for (let i = 0; i < data.length; i++) {
     let product = data[i];
@@ -67,7 +69,7 @@ const showResults = productsByDates => {
     date = productsByDates[i][i].date;
     header = `
     <ul class="cart__list">
-      <h5 class="cart__articles-delivery">${date}</h5>
+      <h5 class="cart__articles-delivery">Entrega ${date}</h5>
     `;
     for (let j = 0; j < productsByDates[i].length; j++) {
       template = `
@@ -153,21 +155,20 @@ const addListeners = () => {
 
 const handleMinus = e => {
   const itemId = e.currentTarget.getAttribute("data-id");
-  const itemPrice = e.currentTarget.getAttribute("data-price");
+
   if (data[itemId].units - 1 > 0) {
     --data[itemId].units;
 
-    orderData(data);
+    groupDataByDates(data);
   }
 };
 
 const handlePlus = e => {
   const itemId = e.currentTarget.getAttribute("data-id");
-  const itemPrice = e.currentTarget.getAttribute("data-price");
 
   ++data[itemId].units;
 
-  orderData(data);
+  groupDataByDates(data);
 };
 
 const handleRemoveItem = e => {
