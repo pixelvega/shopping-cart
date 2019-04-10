@@ -29,7 +29,7 @@ const getTotalAmount = data => {
     total += item.price * item.units;
   }
   cartSubtotal.innerHTML = total.toFixed(2);
-  cartTotal.innerHTML = total.toFixed(2) - discount;
+  cartTotal.innerHTML = (total - discount).toFixed(2);
 };
 const getTotalArticles = data => {
   let totalArticles = 0;
