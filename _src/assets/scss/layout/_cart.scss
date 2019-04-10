@@ -44,12 +44,12 @@
   @include cartHeaderTitles();
 }
 .cart__form {
-  height: calc(100% - 123px);
+  height: calc(100% - 126px);
   overflow: auto;
-  padding: 0 15px;
+  padding: 0 15px 15px 15px;
   @media all and (min-width: 768px) {
-    height: calc(100% - 121px);
-    padding: 0 30px;
+    height: calc(100% - 130px);
+    padding: 0 30px 30px 30px;
   }
 }
 .cart__list {
@@ -94,7 +94,6 @@
 .cart__item-size {
   grid-area: foot;
   align-self: center;
-  // font-size: 12px;
   @include cartItemSize();
   margin: 0;
 }
@@ -183,11 +182,7 @@
 .cart__submit-btn {
   width: 100%;
   padding: 17px 15px;
-  margin-bottom: 15px;
   background: $dark;
-  @media all and (min-width: 768px) {
-    margin-bottom: 30px;
-  }
 }
 .cart__submit-btn-title {
   margin: 0;
