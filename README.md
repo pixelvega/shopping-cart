@@ -2,9 +2,8 @@
 
 Creación de un carrito de e-commerce con HTML5, SASS y Vanilla JS
 
-## Installation
+## Instalación
 
-Guía de inicio rápido
 Necesitarás instalar [Node.js](https://nodejs.org/) y [Gulp](https://gulpjs.com), luego:
 
 1. Descarga o clona el repositorio
