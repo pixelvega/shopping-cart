@@ -10,21 +10,21 @@ Necesitarás instalar [Node.js](https://nodejs.org/) y [Gulp](https://gulpjs.com
 2. Instala las dependencias locales con `$ npm install`
 3. Arranca el proyecto con `$ gulp`
 
-##Requisitos
+## Requisitos
 
-###Requisitos funcionales
+### Requisitos funcionales
 
 1. Añadir y restar unidades al carrito limitando a 1 unidad mínima de producto.
 2. Eliminar un artículo del carrito.
 3. Mostrar y ocultar el carrito haciendo click en un botón.
 
-###Requisitos de diseño
+### Requisitos de diseño
 
 1. Ajuste máximo al prototipo dado.
 
 ## Explicación del código js
 
-###Recogida y muestra de datos
+### Recogida y muestra de datos
 
 - Simulación de una petición fetch a un json local.
 - Se guardan los datos en una variable global data
@@ -39,7 +39,7 @@ Necesitarás instalar [Node.js](https://nodejs.org/) y [Gulp](https://gulpjs.com
   4. Al finalizar todas las iteraciones pinta todo el contenido en el DOM.
   5. Añade los eventos listener a cada botón para sumar/restar unidades y para eliminar cada item.
 
-###Eventos
+### Eventos
 
 - Añadir unidades de producto:
   1. Recoge el id del botón a través de un atributo data que es igual a la id única del item.
@@ -60,7 +60,7 @@ Necesitarás instalar [Node.js](https://nodejs.org/) y [Gulp](https://gulpjs.com
      - Actualiza data.
      - Llama a la función que obtiene y repinta el total de artículos, y la función que calcula y repinta el total y subtotal de la cuenta.
 
-###Funciones
+### Funciones
 
 - Mostrar el total de artículos:
 
@@ -72,7 +72,7 @@ Necesitarás instalar [Node.js](https://nodejs.org/) y [Gulp](https://gulpjs.com
   - El total se obtiene de aplicar un descuento del 30% al subtotal.
   - Pinta en los elementos del DOM estos valores reduciendo los decimales del producto a dos con el método _toFixed()_.
 
-##Estilos css:
+## Estilos css:
 
 - Sistema **GRID** de css para crear la rejilla del layout:
 
