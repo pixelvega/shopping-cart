@@ -7,6 +7,11 @@ const cartArticlesEl = document.querySelector(".cart__articles");
 const cartTotal = document.querySelector(".cart__total-sum-number");
 const cartTotalArticles = document.querySelector(".cart__title-num");
 
+const btnCartEl = document.querySelector(".header__icon-bag");
+const cartSection = document.querySelector(".page__cart");
+const mainSection = document.querySelector(".page__main");
+const mainContainer = document.querySelector(".main__container");
+
 const getResults = () => {
   fetch(ENDPOINT)
     .then(resp => resp.json())
@@ -169,10 +174,10 @@ const handleRemoveItem = e => {
   const itemId = e.currentTarget.getAttribute("data-id");
   const itemEl = document.getElementById(`${itemId}`);
   const parentEl = itemEl.parentNode;
+
   parentEl.removeChild(itemEl);
 
   if (parentEl.children.length <= 1) {
-    console.log("ya no le quedan hijos");
     parentEl.parentNode.removeChild(parentEl);
   }
 
@@ -184,8 +189,14 @@ const handleRemoveItem = e => {
 
   getTotalAmount(data);
   getTotalArticles(data);
-
-  // console.log(e.currentTarget.parentNode.parentNode);
 };
 
 getResults();
+
+const slideCart = () => {
+  cartSection.classList.toggle("slide-cart");
+  mainSection.classList.toggle("page__main-overflow");
+  mainContainer.classList.toggle("main__overlay");
+};
+
+btnCartEl.addEventListener("click", slideCart);
