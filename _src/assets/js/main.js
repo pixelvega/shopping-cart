@@ -9,11 +9,6 @@ const cartTotal = document.querySelector(".cart__total-sum-number");
 const cartTotalArticles = document.querySelector(".cart__title-num");
 const itemQuantity = document.querySelector(".cart__item-quantity-number");
 
-const btnCartEl = document.querySelector(".header__icon-bag");
-const cartSection = document.querySelector(".page__cart");
-const mainSection = document.querySelector(".page__main");
-const mainContainer = document.querySelector(".main__container");
-
 const getResults = () => {
   fetch(ENDPOINT)
     .then(resp => resp.json())
@@ -23,37 +18,14 @@ const getResults = () => {
     });
 };
 
-const getTotalAmount = data => {
-  let subtotal = 0;
-  let total = 0;
-
-  for (const item of data) {
-    subtotal += item.price * item.units;
-  }
-  if (subtotal === 0) {
-    total = 0;
-  } else {
-    total = subtotal - (subtotal * 30) / 100;
-  }
-
-  cartSubtotal.innerHTML = subtotal.toFixed(2);
-  cartTotal.innerHTML = total.toFixed(2);
-};
-const getTotalArticles = data => {
-  let totalArticles = 0;
-  for (const item of data) {
-    totalArticles += item.units;
-  }
-
-  cartTotalArticles.innerHTML = totalArticles;
-};
-
 const groupDataByDates = data => {
   let deliveryDates = [];
   productsByDates = [];
+
   for (let i = 0; i < data.length; i++) {
     let product = data[i];
     let indexArr = deliveryDates.indexOf(product.date);
+
     if (indexArr < 0) {
       deliveryDates.push(product.date);
       productsByDates[deliveryDates.length - 1] = [];
@@ -137,6 +109,7 @@ const showResults = productsByDates => {
         </li>`;
 
         listItems += template;
+
         if (j === productsByDates[i].length - 1) {
           cartList += header + listItems + "</ul>";
           listItems = "";
@@ -176,6 +149,7 @@ const handleMinus = e => {
       itemQuantity.innerHTML = item.units;
     }
   }
+
   getTotalAmount(data);
   getTotalArticles(data);
 };
@@ -189,8 +163,35 @@ const handlePlus = e => {
       itemQuantity.innerHTML = item.units;
     }
   }
+
   getTotalAmount(data);
   getTotalArticles(data);
+};
+
+const getTotalAmount = data => {
+  let subtotal = 0;
+  let total = 0;
+
+  for (const item of data) {
+    subtotal += item.price * item.units;
+  }
+  if (subtotal === 0) {
+    total = 0;
+  } else {
+    total = subtotal - (subtotal * 30) / 100;
+  }
+
+  cartSubtotal.innerHTML = subtotal.toFixed(2);
+  cartTotal.innerHTML = total.toFixed(2);
+};
+
+const getTotalArticles = data => {
+  let totalArticles = 0;
+  for (const item of data) {
+    totalArticles += item.units;
+  }
+
+  cartTotalArticles.innerHTML = totalArticles;
 };
 
 const handleRemoveItem = e => {
@@ -203,9 +204,11 @@ const handleRemoveItem = e => {
       parentEl.removeChild(itemEl);
     }
   }
+
   if (parentEl.children.length <= 1) {
     parentEl.parentNode.removeChild(parentEl);
   }
+
   for (let i = 0; i < data.length; i++) {
     if (data[i].id.indexOf(itemId) !== -1) {
       data.splice(i, 1);
@@ -217,6 +220,13 @@ const handleRemoveItem = e => {
 };
 
 getResults();
+
+//event when toggle visibility of cart
+
+const btnCartEl = document.querySelector(".header__icon-bag");
+const cartSection = document.querySelector(".page__cart");
+const mainSection = document.querySelector(".page__main");
+const mainContainer = document.querySelector(".main__container");
 
 const slideCart = () => {
   cartSection.classList.toggle("slide-cart");
