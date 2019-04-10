@@ -1,9 +1,29 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700,900");
 
-.cart__item-title,
-.cart__subtotal-title,
-.cart__subtotal-title {
+@mixin cartTitle() {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+@mixin cartHeaderTitles() {
   font-size: 14px;
   font-weight: 700;
-  margin: 0;
+}
+
+@mixin cartItemName() {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@mixin cartItemSize() {
+  font-size: 12px;
+}
+
+@mixin cartItemPrice() {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@mixin itemQuantity() {
+  font-size: 12px;
 }
