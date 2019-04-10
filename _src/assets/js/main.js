@@ -4,25 +4,32 @@ let data = [];
 let productsByDates = [];
 
 const cartArticlesEl = document.querySelector(".cart__articles");
+const cartSubtotal = document.querySelector(".cart__subtotal-sum");
 const cartTotal = document.querySelector(".cart__total-sum-number");
 const cartTotalArticles = document.querySelector(".cart__title-num");
+
+const btnCartEl = document.querySelector(".header__icon-bag");
+const cartSection = document.querySelector(".page__cart");
+const mainSection = document.querySelector(".page__main");
+const mainContainer = document.querySelector(".main__container");
 
 const getResults = () => {
   fetch(ENDPOINT)
     .then(resp => resp.json())
     .then(results => {
       data = results;
-      orderData(data);
+      groupDataByDates(data);
     });
 };
 
 const getTotalAmount = data => {
   let total = 0;
+  let discount = 10;
   for (const item of data) {
     total += item.price * item.units;
   }
-
-  cartTotal.innerHTML = total.toFixed(2);
+  cartSubtotal.innerHTML = total.toFixed(2);
+  cartTotal.innerHTML = total.toFixed(2) - discount;
 };
 const getTotalArticles = data => {
   let totalArticles = 0;
@@ -33,7 +40,7 @@ const getTotalArticles = data => {
   cartTotalArticles.innerHTML = totalArticles;
 };
 
-const orderData = data => {
+const groupDataByDates = data => {
   let deliveryDates = [];
   for (let i = 0; i < data.length; i++) {
     let product = data[i];
@@ -62,7 +69,7 @@ const showResults = productsByDates => {
     date = productsByDates[i][i].date;
     header = `
     <ul class="cart__list">
-      <h5 class="cart__articles-delivery">${date}</h5>
+      <h5 class="cart__articles-delivery">Entrega ${date}</h5>
     `;
     for (let j = 0; j < productsByDates[i].length; j++) {
       template = `
@@ -93,7 +100,7 @@ const showResults = productsByDates => {
             }" data-price="${productsByDates[i][j].price}" data-units="${
         productsByDates[i][j].units
       }">
-              <i class="fas fa-plus"></i>
+              <i class="fas fa-plus cart__quantity-icon"></i>
             </button>
             <div class="cart__item-quantity">
               <span class="cart__item-quantity-number">${
@@ -105,14 +112,14 @@ const showResults = productsByDates => {
             }" data-price="${productsByDates[i][j].price}" data-units="${
         productsByDates[i][j].units
       }">
-              <i class="fas fa-minus"></i>
+              <i class="fas fa-minus cart__quantity-icon"></i>
             </button>
           </div>
           <button class="btn cart__item-btn-remove" data-id="${
             productsByDates[i][j].id
           }">
             <i class="far fa-trash-alt"></i>
-            <span class="cart__item-btn-remove-text hidden">Eliminar</span>
+            <span class="cart__item-btn-remove-text">Eliminar</span>
           </button>
         </div>
       </li>`;
@@ -148,31 +155,30 @@ const addListeners = () => {
 
 const handleMinus = e => {
   const itemId = e.currentTarget.getAttribute("data-id");
-  const itemPrice = e.currentTarget.getAttribute("data-price");
+
   if (data[itemId].units - 1 > 0) {
     --data[itemId].units;
 
-    orderData(data);
+    groupDataByDates(data);
   }
 };
 
 const handlePlus = e => {
   const itemId = e.currentTarget.getAttribute("data-id");
-  const itemPrice = e.currentTarget.getAttribute("data-price");
 
   ++data[itemId].units;
 
-  orderData(data);
+  groupDataByDates(data);
 };
 
 const handleRemoveItem = e => {
   const itemId = e.currentTarget.getAttribute("data-id");
   const itemEl = document.getElementById(`${itemId}`);
   const parentEl = itemEl.parentNode;
+
   parentEl.removeChild(itemEl);
 
   if (parentEl.children.length <= 1) {
-    console.log("ya no le quedan hijos");
     parentEl.parentNode.removeChild(parentEl);
   }
 
@@ -184,8 +190,15 @@ const handleRemoveItem = e => {
 
   getTotalAmount(data);
   getTotalArticles(data);
-
-  // console.log(e.currentTarget.parentNode.parentNode);
+  groupDataByDates(data);
 };
 
 getResults();
+
+const slideCart = () => {
+  cartSection.classList.toggle("slide-cart");
+  mainSection.classList.toggle("page__main-overflow");
+  mainContainer.classList.toggle("main__overlay");
+};
+
+btnCartEl.addEventListener("click", slideCart);
