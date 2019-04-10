@@ -112,7 +112,7 @@ const showResults = productsByDates => {
             productsByDates[i][j].id
           }">
             <i class="far fa-trash-alt"></i>
-            <span class="cart__item-btn-remove-text hidden">Eliminar</span>
+            <span class="cart__item-btn-remove-text">Eliminar</span>
           </button>
         </div>
       </li>`;
